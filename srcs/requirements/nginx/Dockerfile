@@ -12,6 +12,8 @@
 
 FROM alpine:latest
 RUN apk update & \
-		apk add --no-cache nginx vim openrc openssl
-COPY ./srcs /tmp
-RUN chmod 755 /tmp/start.sh && sh /tmp/start.sh
+		apk add nginx vim openrc openssl
+COPY ./conf /tmp
+COPY ./tools .
+COPY ./srcs/index.html /tmp
+RUN chmod 755 start.sh && sh start.sh

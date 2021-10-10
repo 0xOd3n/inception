@@ -12,3 +12,10 @@
 
 FROM alpine:latest
 
+RUN apk add --no-cache wget tar php7-fpm php7-json php7-gd php7-mysqli php7-zlib php7-curl
+RUN wget https://wordpress.org/latest.tar.gz && \
+	mkdir -p /var/www && \
+	tar -xvf latest.tar.gz -C /var/www/ && \
+	rm -rf latest.tar.gz
+EXPOSE 9000
+ 
