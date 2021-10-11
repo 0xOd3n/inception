@@ -14,9 +14,9 @@ FROM alpine:latest
 RUN apk update & \
 		apk add nginx openssl
 COPY ./conf /tmp
-COPY ./tools .
 COPY ./srcs/index.html /tmp
-#RUN chmod 755 start.sh && sh start.shi
-#EXPOSE 443
-ENTRYPOINT ["./docker-nginx-entrypoint.sh"]
+COPY ./tools/docker-nginx-entrypoint.sh .
+RUN chmod 755 docker-nginx-entrypoint.sh
+EXPOSE 443
+ENTRYPOINT ["sh","/docker-nginx-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
