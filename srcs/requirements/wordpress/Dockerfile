@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Dockerfile                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abbelhac <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: abbelhac <abbelhac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/02 21:17:47 by abbelhac          #+#    #+#              #
-#    Updated: 2021/10/02 21:17:50 by abbelhac         ###   ########.fr        #
+#    Updated: 2021/10/12 21:50:10 by abbelhac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,4 +18,6 @@ RUN wget https://wordpress.org/latest.tar.gz && \
 	tar -xvf latest.tar.gz -C /var/www/ && \
 	rm -rf latest.tar.gz
 EXPOSE 9000
+# ENTRYPOINT [ "sh", "docker-wordpress-entrypoint.sh" ]
+# CMD ["php-fpm7", "-F"]
  

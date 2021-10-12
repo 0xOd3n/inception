@@ -1,18 +1,22 @@
-#!/bin/bash
+#!/bin/sh
 
-#openrc
-#touch /run/openrc/softlevel
-mkdir -p /var/www/abbelhac
-if [! -e /etc/ssl/private/${DOMAINE_NAME}.key] || [! -e /etc/ssl/certs/${DOMAINE_NAME}.crt]; then
-	echo "create TLS certs & key file"
-	openssl req -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=MO/ST=Khouribga/L=Khouribga/O=42/OU=1337Khouribga/CN=abbelhac.42.fr" -keyout /etc/ssl/private/${DOMAINE_NAME}.key -out /etc/ssl/certs/${DOMAINE_NAME}.crt
+if [ ! -e /etc/ssl/private/${DM_NAME} ] ||
+     [ ! -e /etc/ssl/certs/${DM_NAME} ]; then
+	echo "create TLS certs & key files"
+	openssl req -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=MO/ST=Khouribga/L=Khouribga/O=42/OU=1337Khouribga/CN=${DM_NAME}" -keyout /etc/ssl/private/${DM_NAME}.key -out /etc/ssl/certs/${DM_NAME}.crt
 fi
-cp /tmp/index.html /var/www/abbelhac
+
 if [ -e /tmp/default.conf ]; then
-	mv /tmp/default.conf /etc/nginx/http.d/default.conf
+	echo "setup nginx conf file"
+	envsubst '$DM_NAME' < /tmp/default.conf > /etc/nginx/http.d/default.conf
+	rm /tmp/default.conf
 fi
+
+mkdir -p /var/www/abbelhac
+mv /tmp/index.html /var/www/abbelhac/
+
 #service nginx status
 #service nginx start
 #tail -f  /var/log/nginx/access.log
-nginx -g "daemon off;"
 #exec "$@"
+nginx -g "daemon off;"
