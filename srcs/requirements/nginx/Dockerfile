@@ -10,8 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-FROM alpine:latest
-RUN apk update & \
+FROM alpine:3.13
+
+RUN apk update && \
 		apk add --no-cache nginx openssl gettext
 COPY ./conf /tmp
 COPY ./srcs/index.html /tmp

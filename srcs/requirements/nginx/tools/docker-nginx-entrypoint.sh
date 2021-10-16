@@ -12,7 +12,8 @@ if [ -e /tmp/default.conf ]; then
 	rm /tmp/default.conf
 fi
 
-mkdir -p /var/www/abbelhac
+mkdir -p /var/www/wordpress
+mkdir -p /run/nginx
 mv /tmp/index.html /var/www/abbelhac/
 
 #service nginx status
