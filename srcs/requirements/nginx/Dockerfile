@@ -6,7 +6,7 @@
 #    By: abbelhac <abbelhac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/10 21:12:05 by abbelhac          #+#    #+#              #
-#    Updated: 2021/10/17 19:51:21 by abbelhac         ###   ########.fr        #
+#    Updated: 2021/10/18 17:48:02 by abbelhac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ RUN apk update && \
 COPY ./conf /tmp
 COPY ./srcs/index.html /var/www/wordpress/
 COPY ./tools/docker-nginx-entrypoint.sh .
-#RUN chmod 755 docker-nginx-entrypoint.sh
+RUN chmod +x docker-nginx-entrypoint.sh
 EXPOSE 443
-ENTRYPOINT ["sh","/docker-nginx-entrypoint.sh"]
-#CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["./docker-nginx-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]

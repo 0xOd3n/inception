@@ -14,10 +14,10 @@ fi
 
 mkdir -p /var/www/wordpress
 mkdir -p /run/nginx
-mv /tmp/index.html /var/www/abbelhac/
+# mv /tmp/index.html /var/www/wordpress/
 
 #service nginx status
 #service nginx start
 #tail -f  /var/log/nginx/access.log
 #exec "$@"
-nginx -g "daemon off;"
+exec "$@"

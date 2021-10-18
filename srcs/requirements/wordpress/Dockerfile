@@ -6,7 +6,7 @@
 #    By: abbelhac <abbelhac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/02 21:17:47 by abbelhac          #+#    #+#              #
-#    Updated: 2021/10/17 19:10:37 by abbelhac         ###   ########.fr        #
+#    Updated: 2021/10/18 17:49:05 by abbelhac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,12 @@ RUN wget https://wordpress.org/latest.tar.gz && \
 	tar -xvf latest.tar.gz && \
 	mv wordpress/* /var/www/wordpress/ && \
 	rm -rf latest.tar.gz wordpress
-COPY ./conf /tmp
-COPY ./tools /.
+COPY ./conf/* /tmp
+COPY ./tools/* /.
+RUN chmod +x docker-wordpress-entrypoint.sh
+
 EXPOSE 9000
-ENTRYPOINT [ "sh", "docker-wordpress-entrypoint.sh" ]
+ENTRYPOINT ["./docker-wordpress-entrypoint.sh"]
+CMD ["php-fpm7", "-F"]
 #CMD ["php-fpm7", "-F"]
  
