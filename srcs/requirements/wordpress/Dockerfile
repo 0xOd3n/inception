@@ -23,7 +23,7 @@ COPY ./tools/* /.
 RUN chmod +x docker-wordpress-entrypoint.sh
 
 EXPOSE 9000
-ENTRYPOINT ["./docker-wordpress-entrypoint.sh"]
+ENTRYPOINT ["sh", "/docker-wordpress-entrypoint.sh"]
 CMD ["php-fpm7", "-F"]
 #CMD ["php-fpm7", "-F"]
  

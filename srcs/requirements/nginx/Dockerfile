@@ -19,5 +19,5 @@ COPY ./srcs/index.html /var/www/wordpress/
 COPY ./tools/docker-nginx-entrypoint.sh .
 RUN chmod +x docker-nginx-entrypoint.sh
 EXPOSE 443
-ENTRYPOINT ["./docker-nginx-entrypoint.sh"]
+ENTRYPOINT ["sh", "/docker-nginx-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]

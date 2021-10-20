@@ -18,6 +18,7 @@ services:
     - wp-data:/var/www/wordpress/
     # links: 
     # - wordpress
+    restart: always
 
   wordpress: 
     build: ./requirements/wordpress/.
@@ -31,6 +32,7 @@ services:
     - inception_network
     volumes:
     - wp-data:/var/www/wordpress/
+    restart: always
 
 networks:
   inception_network:
@@ -41,6 +43,6 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: "/Users/abbelhac/wp-data"
+      device: "/home/abbelhac/wp-data"
       o: bind
 
