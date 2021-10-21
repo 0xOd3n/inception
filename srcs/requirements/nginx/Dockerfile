@@ -14,10 +14,14 @@ FROM alpine:3.13
 
 RUN apk update && \
 		apk add --no-cache nginx openssl gettext
+
 COPY ./conf /tmp
 COPY ./srcs/index.html /var/www/wordpress/
 COPY ./tools/docker-nginx-entrypoint.sh .
+
 RUN chmod +x docker-nginx-entrypoint.sh
+
 EXPOSE 443
+
 ENTRYPOINT ["sh", "/docker-nginx-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]

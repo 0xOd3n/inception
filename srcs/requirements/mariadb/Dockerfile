@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 FROM alpine:3.13
+
 RUN apk update && apk add mariadb mariadb-client
 
 RUN mkdir -p /run/mysqld && \
@@ -19,9 +20,10 @@ RUN mkdir -p /run/mysqld && \
 RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql --auth-root-authentication-method=normal
 RUN adduser abbelhac -D
 
+COPY ./conf/my.cnf /etc/
 COPY ./tools .
 
-ENTRYPOINT ["sh", "/docker-mariadb-entrypoint.sh"]
 EXPOSE 3306
 
+ENTRYPOINT ["sh", "/docker-mariadb-entrypoint.sh"]
 CMD ["/usr/bin/mysqld", "--user=mysql", "--skip-name-resolve" , "--init-file=/tmp/init" , "--debug-gdb"]
