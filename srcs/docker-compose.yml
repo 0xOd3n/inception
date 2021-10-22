@@ -60,11 +60,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: "/home/abbelhac/wp-data"
+      device: "/home/abbelhac/data/wp-data"
       o: bind
   db-data:
     driver: local
     driver_opts:
       type: none
-      device: "/home/abbelhac/db-data"
+      device: "/home/abbelhac/data/db-data"
       o: bind
