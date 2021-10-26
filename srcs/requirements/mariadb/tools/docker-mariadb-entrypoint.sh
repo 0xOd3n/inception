@@ -7,14 +7,14 @@ if [ ! -e /tmp/init ]; then
 	fi
 
 	echo "** creating init file: /tmp/init"
-	echo "GRANT ALL ON *.* TO 'root'@'%' identified by '${MYSQL_ROOT_PASSWORD}' WITH GRANT OPTION;" >> /tmp/init
+	echo "GRANT ALL ON *.* TO 'root'@'localhost' identified by '${MYSQL_ROOT_PASSWORD}' WITH GRANT OPTION;" >> /tmp/init
 	echo "DROP DATABASE IF EXISTS test;" >> /tmp/init
 
 	if [ -n "${MYSQL_DATABASE}" ]; then
 		echo "** creating database: ${MYSQL_DATABASE}"
 		echo "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;" >> /tmp/init
 		if [ -n "${MYSQL_USER}" ] && [ -n "${MYSQL_PASSWORD}" ]; then
-			echo "GRANT ALL ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';" >> /tmp/init
+			echo "GRANT ALL ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'localhost' identified by '${MYSQL_PASSWORD}';" >> /tmp/init
 		fi
 	fi
 	echo "FLUSH PRIVILEGES;" >> /tmp/init
