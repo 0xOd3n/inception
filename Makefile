@@ -22,7 +22,7 @@ clean: clean
 	docker volume rm -f $(VOLUMES)
 
 $(DATA_PATH):
-	sudo mkdir -p $(DATA_PATH)/wp-data $(DATA_PATH)/db-data
+	mkdir -p $(DATA_PATH)/wp-data $(DATA_PATH)/db-data
 re: down up
 
 

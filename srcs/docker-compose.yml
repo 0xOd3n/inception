@@ -11,14 +11,11 @@ services:
     env_file:
     - .env
     ports:
-    # - "80:80"
     - "443:443"
     networks:
     - inception_network
     volumes:
     - wp-data:/var/www/wordpress/
-    # links: 
-    # - wordpress
     restart: always
 
   wordpress:
