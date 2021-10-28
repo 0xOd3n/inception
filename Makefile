@@ -24,5 +24,3 @@ clean: clean
 $(DATA_PATH):
 	mkdir -p $(DATA_PATH)/wp-data $(DATA_PATH)/db-data
 re: down up
-
-
